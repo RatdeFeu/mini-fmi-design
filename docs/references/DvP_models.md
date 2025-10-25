@@ -22,9 +22,4 @@ flowchart TD
         B3 --> C3[Net cash obligations calculated] --> D3[Periodic net settlement]
         D3 --> E3[Settlement complete]
     end
-
-    %% Styling
-    style M1 fill:#d4f0fc,stroke:#0077b6,stroke-width:2px
-    style M2 fill:#ffe5d9,stroke:#f77f00,stroke-width:2px
-    style M3 fill:#e0ffe0,stroke:#2a9d8f,stroke-width:2px
 ```
