@@ -13,7 +13,7 @@
     ECLR->>ECLR: Validate risk limits / thresholds
     CLST->>CLST: Same checks
 
-    par Simultaneous Settlement
+    par Simultaneous Settlement(if one fails, both roll back)
         ECLR->>ECLR: Debit/Credit Euroclear accounts
         CLST->>CLST: Debit/Credit Clearstream accounts
     end
