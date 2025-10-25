@@ -1,25 +1,25 @@
 ```mermaid
-  sequenceDiagram
+ sequenceDiagram
     participant Buyer
     participant Seller
     participant Euroclear as Euroclear System
     participant Ledger
 
-    Seller->>Euroclear: Deliver instruction - SELL
-    Buyer->>Euroclear: Receive instruction - BUY
-    Euroclear->>Euroclear: Validate instructions - ISIN, quantity, eligibility
+    Seller->>Euroclear: Deliver instruction (SELL)
+    Buyer->>Euroclear: Receive instruction (BUY)
+    Euroclear->>Euroclear: Validate instructions (ISIN, quantity, eligibility)
     Euroclear->>Ledger: Check cash & securities positions
-    Ledger-->>Euroclear: OK - positions sufficient
+    Ledger-->>Euroclear: OK (positions sufficient)
 
-    Euroclear->>Ledger: 
-        atomic DvP {
-            Debit Seller securities
-            Credit Buyer securities
-            Debit Buyer cash
-            Credit Seller cash
-        }
+    par Euroclear to Ledger: 
+        Euroclear->>Ledger: Debit Seller securities
+        Euroclear->>Ledger: Credit Buyer securities
+        Euroclear->>Ledger: Debit Buyer cash
+        Euroclear->>Ledger: Credit Seller cash
+    end
+
+
     Ledger-->>Euroclear: Transaction committed
-    Euroclear->>Buyer: Confirmation - SETTLED
-    Euroclear->>Seller: Confirmation - SETTLED
-
+    Euroclear->>Buyer: Confirmation (SETTLED)
+    Euroclear->>Seller: Confirmation (SETTLED)
 ```
