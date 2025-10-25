@@ -45,11 +45,11 @@ This folder contains sequence and flow diagrams illustrating the key settlement 
 
 
 ### Euroclear key takeaways:
-Internal = book-entry only, atomic finality.
-Bridge = coordinated dual-ledger finality (Euroclear + Clearstream).
-External = provisional entries awaiting external confirmation.
-All flows rely on cash & securities ledgers and DvP atomicity.
-    notes:
-        Definition: “atomic” means that the securities and cash legs are processed as one indivisible event — there is no partial settlement where only one side completes
-        Purpose: To eliminate principal risk, i.e., the risk that one party delivers securities (or cash) but does not receive the corresponding payment (or securities).touch
-Each instruction follows the RECEIVED → POSITIONED → EXECUTING → SETTLED/PROVISIONAL state machine.
+- Internal = book-entry only, atomic finality.
+- Bridge = coordinated dual-ledger finality (Euroclear + Clearstream).
+- External = provisional entries awaiting external confirmation.
+- All flows rely on cash & securities ledgers and DvP atomicity.
+-- notes:
+--- Definition: “atomic” means that the securities and cash legs are processed as one indivisible event — there is no partial settlement where only one side completes
+--- Purpose: To eliminate principal risk, i.e., the risk that one party delivers securities (or cash) but does not receive the corresponding payment (or securities).touch
+- Each instruction follows the RECEIVED → POSITIONED → EXECUTING → SETTLED/PROVISIONAL state machine.
