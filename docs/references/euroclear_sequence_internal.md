@@ -1,5 +1,5 @@
 ```mermaid
-   sequenceDiagram
+  sequenceDiagram
     participant Buyer
     participant Seller
     participant Euroclear as Euroclear System
@@ -21,4 +21,5 @@
     Ledger-->>Euroclear: Transaction committed
     Euroclear->>Buyer: Confirmation (SETTLED)
     Euroclear->>Seller: Confirmation (SETTLED)
+
 ```
