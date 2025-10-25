@@ -1,21 +1,23 @@
 ```mermaid
-    A1 -->|Trade Instruction| B1
-    A2 -->|Trade Instruction| B1
-    B1 --> B2
-    B2 -->|Eligible for settlement| B3
+    sequenceDiagram
+    participant ECLR as Euroclear
+    participant CLST as Clearstream
+    participant Buyer
+    participant Seller
 
-    %% Internal Flow
-    B3 -->|Internal DvP: Debit/Credit| B4
+    Buyer->>ECLR: Bridge Deliver instruction
+    Seller->>ECLR: Bridge Receive instruction
+    ECLR->>CLST: Send Bridge Instruction (ISO15022/20022 message)
+    CLST-->>ECLR: Confirm match and settlement window
 
-    %% Bridge Flow
-    B3 -->|Bridge Instruction| C2
-    C2 -->|Confirmation / Matched| B4
+    ECLR->>ECLR: Validate risk limits / thresholds
+    CLST->>CLST: Same checks
 
-    %% External Flow
-    B3 -->|External Instruction| C1
-    C1 -->|Local Market Confirmation| B5
-    B5 -->|Transit → Final| B4
+    par Simultaneous Settlement
+        ECLR->>ECLR: Debit/Credit Euroclear accounts
+        CLST->>CLST: Debit/Credit Clearstream accounts
+    end
 
-    B4 -->|Final Updates| A1
-    B4 -->|Final Updates| A2
+    ECLR-->>Buyer: Settlement confirmation (Final)
+    CLST-->>Seller: Settlement confirmation (Final)
 ```
